@@ -80,7 +80,8 @@ async function startBrowse() {
     document.getElementById("browseAlert").classList.remove("d-none");
   }
   buildGenreButtons();
-  const requestedGenre = pageParams.get("genre");
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedGenre = urlParams.get("genre");
   if (requestedGenre && movies.some(function (m) { return m.genre === requestedGenre; })) {
     selectedGenre = requestedGenre;
     document.querySelectorAll(".genre-btn").forEach(function (b) {
@@ -90,3 +91,5 @@ async function startBrowse() {
   showMovies();
 }
 startBrowse();
+
+
