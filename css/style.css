@@ -1,0 +1,172 @@
+/* ==========================================================
+   CHESTER MOVIE HUB - main stylesheet
+   Sections: 1 Variables | 2 Base | 3 Navbar | 4 Hero | 5 Movie rows & grid
+             6 Cards | 7 Details | 8 Forms | 9 Footer | 10 Media queries
+   ========================================================== */
+
+/* 1. VARIABLES - one place to change the colour scheme */
+:root {
+  --bg: #080808;          /* primary background */
+  --bg-alt: #151515;      /* secondary background (charcoal) */
+  --red: #E50914;         /* primary accent */
+  --red-dark: #B20710;    /* secondary accent */
+  --text: #e60d0d;
+  --muted: #d01313;
+  --radius: 12px;
+}
+
+/* 2. BASE - ELEMENT SELECTORS */
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  overflow-x: hidden;               /* stops sideways scrolling on phones */
+}
+h1, h2, h3 { font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif; letter-spacing: 1px; }
+h2 { font-size: 2rem; }
+p { color: var(--muted); line-height: 1.6; }
+a { color: var(--text); text-decoration: none; }
+a:hover { color: var(--red); }
+img { max-width: 100%; height: auto; }   /* responsive images */
+main { min-height: 70vh; }
+
+/* Visible keyboard focus (focus state requirement) */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* Buttons: Bootstrap .btn + our own look */
+.btn-cine { background: var(--red); border: 2px solid var(--red); color: #fff; font-weight: 600; border-radius: 8px; }
+.btn-cine:hover { background: var(--red-dark); border-color: var(--red-dark); color: #fff; }
+.btn-outline-cine { background: transparent; border: 2px solid #fff; color: #fff; font-weight: 600; border-radius: 8px; }
+.btn-outline-cine:hover { background: #fff; color: #000; }
+
+/* 3. NAVBAR */
+#mainNav { background: rgba(8, 8, 8, .95); border-bottom: 1px solid #222; }
+.brand-logo { height: 34px; width: auto; }
+#mainNav .nav-link { color: var(--muted); font-weight: 500; }
+#mainNav .nav-link:hover, #mainNav .nav-link.active { color: #fff; }
+#mainNav .nav-link.active { border-bottom: 2px solid var(--red); }
+.nav-search { gap: 6px; max-width: 340px; }
+.nav-search .form-control { min-width: 150px; border-radius: 8px; }
+.nav-search .btn { white-space: nowrap; }
+@media (max-width: 991px) { .nav-search { max-width: 100%; } }
+.list-badge { background: var(--red); border-radius: 20px; padding: 1px 8px; font-size: .75rem; margin-left: 4px; }
+
+/* 4. HERO BANNER (home page) */
+.hero {
+  min-height: 80vh;
+  display: flex;                    /* flexbox: centre content vertically */
+  align-items: center;
+  background: linear-gradient(90deg, #080808 25%, rgba(8,8,8,.2)), url("../images/banners/hero.svg") center / cover no-repeat;
+}
+.hero h1 { font-size: clamp(3rem, 9vw, 6rem); line-height: 1; }
+.hero .tagline { color: var(--red); font-weight: 600; }
+.hero p.lead { max-width: 520px; }
+
+/* 5. MOVIE ROWS & GRID */
+.section-title { border-left: 4px solid var(--red); padding-left: 12px; margin: 40px 0 16px; }
+.movie-row {                         /* horizontal scrolling row on the home page */
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px;
+}
+.movie-row .movie-card { flex: 0 0 180px; }
+.movie-grid {                        /* CSS Grid on the browse / my list pages */
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+#searchInput, .form-select { background: var(--bg-alt); color: #fff; border: 1px solid #333; }
+#searchInput::placeholder { color: #888; }
+.genre-btn { border-radius: 20px; }
+.genre-btn.active { background: var(--red); border-color: var(--red); }
+
+/* 6. MOVIE CARDS */
+.movie-card {
+  background: var(--bg-alt); border: 1px solid #222; border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.movie-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 25px rgba(229, 9, 20, .35); }
+.movie-card img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; display: block; }
+.movie-card .card-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.movie-card h3 { font-size: 1.2rem; margin: 0; }
+.movie-meta { font-size: .8rem; color: var(--muted); margin: 0; }
+.movie-card .btn { font-size: .8rem; padding: 4px 8px; }
+.movie-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* 7. DETAILS PAGE */
+.details-poster { border-radius: var(--radius); box-shadow: 0 0 30px rgba(229, 9, 20, .3); }
+.badge-genre { background: var(--red-dark); font-weight: 500; }
+.modal-content { background: var(--bg-alt); }
+.cv-toast {                          /* feedback message */
+  position: fixed; bottom: 20px; right: 20px; z-index: 2000;
+  background: var(--red); color: #fff; padding: 12px 18px; border-radius: 8px; max-width: 80vw;
+}
+
+/* 8. FORMS & ABOUT */
+.form-panel { background: var(--bg-alt); border-radius: var(--radius); padding: 28px; border: 1px solid #222; }
+.form-control { background: var(--bg); color: #fff; border: 1px solid #333; }
+.form-control:focus { background: var(--bg); color: #fff; border-color: var(--red); box-shadow: 0 0 0 .2rem rgba(229, 9, 20, .3); }
+.demo-note { border: 1px dashed var(--red); border-radius: 8px; padding: 10px 14px; color: var(--muted); font-size: .9rem; }
+.accordion { --bs-accordion-bg: var(--bg-alt); --bs-accordion-color: #d42020; --bs-accordion-btn-bg: var(--bg-alt); --bs-accordion-btn-color: #cb1313; --bs-accordion-active-bg: #222; --bs-accordion-active-color: #fff; --bs-accordion-border-color: #333; }
+.accordion-button::after { filter: invert(1); }
+.feature-box { background: var(--bg-alt); border-radius: var(--radius); padding: 20px; height: 100%; border-top: 3px solid var(--red); }
+
+/* 9. FOOTER */
+#siteFooter { background: var(--bg-alt); border-top: 1px solid #222; padding: 36px 0 20px; margin-top: 60px; }
+#siteFooter h3 { font-size: 1.3rem; }
+#siteFooter ul { list-style: none; padding: 0; }
+#siteFooter li { margin-bottom: 6px; }
+#siteFooter a { color: var(--muted); }
+#siteFooter a:hover { color: var(--red); }
+
+/* 10. MEDIA QUERIES */
+@media (max-width: 991px) {            /* tablets */
+  .movie-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+@media (max-width: 575px) {            /* phones */
+  .hero { min-height: 65vh; text-align: left; }
+  .movie-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .movie-row .movie-card { flex-basis: 140px; }
+  h2 { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+
+/* EXTRA FEATURES: genre chips, sorting and optional light theme */
+.quick-explore { border-bottom: 1px solid #242424; }
+.quick-label { color: var(--muted); font-size: .9rem; font-weight: 600; }
+.genre-chip {
+  display: inline-block; padding: 7px 13px; border: 1px solid #444;
+  border-radius: 20px; color: #eee; font-size: .85rem; transition: .2s ease;
+}
+.genre-chip:hover { background: var(--red); border-color: var(--red); color: #fff; }
+.sort-select { width: auto; min-width: 155px; background-color: var(--bg-alt); color: #fff; border-color: #444; }
+.theme-toggle { white-space: nowrap; }
+.light-theme { --bg: #f3f3f3; --bg-alt: #ffffff; --text: #171717; --muted: #555; background: var(--bg); color: var(--text); }
+.light-theme #mainNav { background: rgba(255,255,255,.96); border-bottom-color: #ddd; }
+.light-theme #mainNav .nav-link { color: #444; }
+.light-theme #mainNav .nav-link.active, .light-theme #mainNav .nav-link:hover { color: #111; }
+.light-theme .movie-card { border-color: #ddd; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.light-theme .genre-chip { color: #222; border-color: #bbb; }
+.light-theme .genre-chip:hover { color: #fff; }
+.light-theme .form-control, .light-theme #searchInput, .light-theme .sort-select { background: #fff; color: #171717; border-color: #bbb; }
+.light-theme #siteFooter { background: #e7e7e7; border-color: #ccc; }
+.light-theme .btn-outline-cine { color: var(--text); border-color: var(--text); }
+.light-theme .btn-outline-cine:hover { background: #222; color: #fff; }
+@media (max-width: 575px) {
+  .quick-explore { padding-left: 12px; padding-right: 12px; }
+  .theme-toggle { margin: 8px 0; }
+}
+
+/* Group developer profiles on the About page */
+.developer-card{overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.045);transition:transform .2s ease,border-color .2s ease}
+.developer-card:hover{transform:translateY(-4px);border-color:rgba(229,9,20,.7)}
+.developer-photo{display:block;width:100%;height:250px;object-fit:cover;object-position:center;background:#171717}
+.developer-card h3{margin:0 0 .35rem;font-size:1.2rem}
+.developer-card p{color:#d60e0e;font-size:.92rem}
+\n/* Local MP4 trailer player */\n#trailerVideo { object-fit: contain; }\n

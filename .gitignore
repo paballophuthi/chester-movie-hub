@@ -1,0 +1,15 @@
+﻿# Large media - excluded from Git (2.95 GB)
+videos/
+
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log

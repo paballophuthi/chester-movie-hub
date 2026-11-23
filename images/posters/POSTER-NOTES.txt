@@ -1,0 +1,5 @@
+CHESTER MOVIE HUB poster artwork notes
+
+The six original CHESTER MOVIE HUB sample titles use AI-generated illustrative artwork created for this demo.
+The six Blender open-movie cards use illustrative artwork crops from an AI-generated visual mock-up, not official Blender film stills or official posters. Replace these with properly licensed official artwork if you publish the site.
+For official Blender artwork and reuse terms, see Blender Studio and the relevant Creative Commons license/attribution requirements.
